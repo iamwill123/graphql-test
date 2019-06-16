@@ -22,7 +22,7 @@ const Schema = new GraphQLSchema({
   query: RootQuery
 });
 
-app.use('/graphql', graphqlHTTP({ schema: Schema }));
+app.use('/graphql', graphqlHTTP({ schema: Schema, graphiql: true }));
 
 app.listen(3000, () => {
   console.log({ running: true });
