@@ -2,7 +2,7 @@ import sql from 'sql';
 
 sql.setDialect('sqlite');
 
-export const users = sql.define({
+const users = sql.define({
   name: 'users',
   columns: [
     {
@@ -21,7 +21,7 @@ export const users = sql.define({
   ]
 });
 
-export const usersFriends = sql.define({
+const usersFriends = sql.define({
   name: 'users_friends',
   columns: [
     {
@@ -39,7 +39,7 @@ export const usersFriends = sql.define({
   ]
 });
 
-export const posts = sql.define({
+const posts = sql.define({
   name: 'posts',
   columns: [
     {
@@ -65,3 +65,14 @@ export const posts = sql.define({
     }
   ]
 });
+
+const dbIdToNodeId = (dbId, tableName) => {
+  return `${tableName}:${dbId}`;
+};
+
+const splitNodeId = nodeId => {
+  const [tableName, dbId] = nodeId.split(':');
+  return { tableName, dbId };
+};
+
+export { users, usersFriends, posts, dbIdToNodeId, splitNodeId };
